@@ -16,7 +16,7 @@ static class EnemyHudUpdateHudsPatch
         Character key = null!;
         foreach (EnemyHud.HudData value in __instance.m_huds.Select(keyValuePair => keyValuePair.Value))
         {
-            if (!value.m_character || !__instance.TestShow(value.m_character))
+            if (!value.m_character || !__instance.TestShow(value.m_character, true))
             {
                 if (key != null) continue;
                 key = value.m_character;
@@ -43,6 +43,17 @@ static class EnemyHudUpdateHudsPatch
                 value.m_gui.transform.Find("Health/health_slow").GetComponent<GuiBar>()
                     .SetColor(HealthDisplayPlugin.TamedColor.Value);
                 value.m_gui.transform.localScale = HealthDisplayPlugin.HealthbarScaleTamed.Value;
+
+                if (value.m_healthFastFriendly)
+                {
+                    bool flag = !player || BaseAI.IsEnemy(player, value.m_character);
+                    value.m_healthFast.gameObject.SetActive(flag);
+                    value.m_healthFastFriendly.gameObject.SetActive(!flag);
+                    value.m_healthFast.SetValue(healthPercentage/100);
+                    value.m_healthFastFriendly.SetValue(healthPercentage/100);
+                }
+                else
+                    value.m_healthFast.SetValue(healthPercentage/100);
             }
         }
 
@@ -86,6 +97,8 @@ static class EnemyHudShowHudPatch
         hudData.m_gui.SetActive(true);
         hudData.m_healthFast = hudData.m_gui.transform.Find("Health/health_fast").GetComponent<GuiBar>();
         hudData.m_healthSlow = hudData.m_gui.transform.Find("Health/health_slow").GetComponent<GuiBar>();
+        hudData.m_healthFastFriendly = hudData.m_gui.transform.Find("Health/health_fast_friendly")
+            .GetComponent<GuiBar>();
         if (isMount)
         {
             hudData.m_stamina = hudData.m_gui.transform.Find("Stamina/stamina_fast").GetComponent<GuiBar>();

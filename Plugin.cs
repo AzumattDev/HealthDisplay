@@ -13,7 +13,7 @@ namespace HealthDisplay
     public class HealthDisplayPlugin : BaseUnityPlugin
     {
         internal const string ModName = "HealthDisplay";
-        internal const string ModVersion = "1.0.0";
+        internal const string ModVersion = "1.0.2";
         internal const string Author = "Azumatt";
         private const string ModGUID = Author + "." + ModName;
         private static string ConfigFileName = ModGUID + ".cfg";

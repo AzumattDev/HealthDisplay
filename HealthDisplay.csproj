@@ -104,7 +104,6 @@
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Content>
         <Content Include="LICENSE.txt" />
-        <Content Include="Thunderstore\HealthDisplay_v1.0.0.zip" />
         <Content Include="Thunderstore\icon.png" />
         <Content Include="Thunderstore\manifest.json" />
         <Content Include="Thunderstore\README.md" />
@@ -144,7 +143,7 @@
         </PropertyGroup>
     </Target>
     <Target Name="Copy" AfterTargets="GetAssemblyVersion">
-        <Exec Command="copy /Y &quot;$(TargetDir)$(AssemblyName).dll&quot; &quot;C:\Users\crypt\AppData\Roaming\r2modmanPlus-local\Valheim\profiles\PermaTesting\BepInEx\plugins\_TESTINGMODS\$(AssemblyName).dll&quot;" />
+        <Exec Command="copy /Y &quot;$(TargetDir)$(AssemblyName).dll&quot; &quot;C:\Users\crypt\AppData\Roaming\r2modmanPlus-local\Valheim\profiles\PTB\BepInEx\plugins\_TESTINGMODS\$(AssemblyName).dll&quot;" />
         <!--<Exec Command="copy /Y &quot;$(TargetDir)$(AssemblyName).dll&quot; &quot;C:\Users\crypt\AppData\Roaming\r2modmanPlus-local\Valheim\profiles\BetterWards190\BepInEx\plugins\$(AssemblyName).dll&quot;"/>-->
     </Target>
     <Target Name="MakeThunderstorePackage" AfterTargets="Copy">
