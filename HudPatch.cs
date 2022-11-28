@@ -97,8 +97,9 @@ static class EnemyHudShowHudPatch
         hudData.m_gui.SetActive(true);
         hudData.m_healthFast = hudData.m_gui.transform.Find("Health/health_fast").GetComponent<GuiBar>();
         hudData.m_healthSlow = hudData.m_gui.transform.Find("Health/health_slow").GetComponent<GuiBar>();
-        hudData.m_healthFastFriendly = hudData.m_gui.transform.Find("Health/health_fast_friendly")
-            .GetComponent<GuiBar>();
+        Transform transform = hudData.m_gui.transform.Find("Health/health_fast_friendly");
+        if ((bool) (Object) transform)
+            hudData.m_healthFastFriendly = transform.GetComponent<GuiBar>();
         if (isMount)
         {
             hudData.m_stamina = hudData.m_gui.transform.Find("Stamina/stamina_fast").GetComponent<GuiBar>();
@@ -126,6 +127,7 @@ static class HudAwakePatch
         Transform originalHealthText = EnemyHud.instance.m_baseHudMount.transform.Find("Health/HealthText");
         foreach (Transform t in EnemyHud.instance.m_hudRoot.transform)
         {
+            if(t.name.Contains("Player") && HealthDisplayPlugin.GroupsIsInstalled) continue;
             Transform healthTransform = t.Find("Health");
             if (!healthTransform) continue;
             if (healthTransform.Find("HealthText")) return;

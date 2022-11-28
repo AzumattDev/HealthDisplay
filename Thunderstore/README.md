@@ -17,6 +17,69 @@ Shows the HP values and percentage of creatures and bosses.
 * Change color of enemy bar/tamed bar
 * Change color of percentage [Max, Mid, Low, Critical]
 
+
+![https://media.discordapp.net/attachments/1046680688822321193/1046680869076733983/image.png](https://media.discordapp.net/attachments/1046680688822321193/1046680869076733983/image.png)
+![https://media.discordapp.net/attachments/1046680688822321193/1046682639597326336/image.png](https://media.discordapp.net/attachments/1046680688822321193/1046682639597326336/image.png)
+
+<details><summary><b>Configuration Options (Click to expand)</b></summary>
+
+### How they look in [Official BepInEx ConfigurationManager](https://valheim.thunderstore.io/package/Azumatt/Official_BepInEx_ConfigurationManager/)
+![https://media.discordapp.net/attachments/1046680688822321193/1046681997722009631/image.png](https://media.discordapp.net/attachments/1046680688822321193/1046681997722009631/image.png)
+
+
+
+`1 - General`
+
+Lock Configuration [Synced with Server]
+* If on, the configuration is locked and can be changed by server admins only.
+  * Default Value: On
+
+Health String Format [Synced with Server]
+* Creature health format
+  * '{0}' is current health value
+  * '{1}' is total health value
+  * '{2}' is health percentage value
+    * Default Value: {0}/{1} (<color>{2}%</color>)
+
+`2 - Colors`
+
+Tamed HB Color [Synced with Server]
+* Color of the health bar for tamed creatures. This is the bar that is on top.
+  * Default Value: 339E66FF
+
+Enemy HB Color [Synced with Server]
+* Color of the health bar for tamed creatures. This is the bar that is under the top bar.
+  * Default Value: 339E66FF
+
+High Percent Color [Synced with Server]
+* Color of the health bar's percentage text for creatures with high health percentage. 75% or higher.
+  * Default Value: 339E66FF
+
+Hurt Percent Color [Synced with Server]
+* Color of the health bar's percentage text for creatures with relatively high health percentage. 50% or higher.
+  * Default Value: CCCC33FF
+
+Low Percent Color [Synced with Server]
+* Color of the health bar's percentage text for creatures with low health percentage. 25% or higher.
+  * Default Value: CC6633FF
+
+Critical Percent Color [Synced with Server]
+* Color of the health bar's percentage text for creatures with critical health percentage. 0% or higher.
+  * Default Value: CC3333FF
+
+`3 - Scaling`
+
+Tamed Healthbar Scale [Synced with Server]
+* Scale of the health bar for tamed creatures.
+  * Default Value: {"x":1.0,"y":1.0,"z":1.0}
+
+Enemy Healthbar Scale [Synced with Server]
+* Scale of the health bar for creatures.
+  * Default Value: {"x":1.0,"y":1.0,"z":1.0}
+
+
+</details>
+
 ## Credits:
 
 Made at my request ("@Majestic"), all credit and creation of this mod goes to @Azumatt!
@@ -27,6 +90,10 @@ For Questions or Comments, find us in the Odin Plus Team Discord:
 
 
 ## Changelog
+- 1.0.3
+  - Fixed issue with boss health bars
+  - Fixed compatibility with Groups mod
+  - Update README.md file with configuration options listing.
 - 1.0.1/1.0.2
   - Mistlands Update
 - 1.0.0
