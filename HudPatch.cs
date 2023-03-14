@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using HarmonyLib;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Object = UnityEngine.Object;
@@ -49,11 +50,11 @@ static class EnemyHudUpdateHudsPatch
                     bool flag = !player || BaseAI.IsEnemy(player, value.m_character);
                     value.m_healthFast.gameObject.SetActive(flag);
                     value.m_healthFastFriendly.gameObject.SetActive(!flag);
-                    value.m_healthFast.SetValue(healthPercentage/100);
-                    value.m_healthFastFriendly.SetValue(healthPercentage/100);
+                    value.m_healthFast.SetValue(healthPercentage / 100);
+                    value.m_healthFastFriendly.SetValue(healthPercentage / 100);
                 }
                 else
-                    value.m_healthFast.SetValue(healthPercentage/100);
+                    value.m_healthFast.SetValue(healthPercentage / 100);
             }
         }
 
@@ -98,20 +99,20 @@ static class EnemyHudShowHudPatch
         hudData.m_healthFast = hudData.m_gui.transform.Find("Health/health_fast").GetComponent<GuiBar>();
         hudData.m_healthSlow = hudData.m_gui.transform.Find("Health/health_slow").GetComponent<GuiBar>();
         Transform transform = hudData.m_gui.transform.Find("Health/health_fast_friendly");
-        if ((bool) (Object) transform)
+        if ((bool)(Object)transform)
             hudData.m_healthFastFriendly = transform.GetComponent<GuiBar>();
         if (isMount)
         {
             hudData.m_stamina = hudData.m_gui.transform.Find("Stamina/stamina_fast").GetComponent<GuiBar>();
-            hudData.m_staminaText = hudData.m_gui.transform.Find("Stamina/StaminaText").GetComponent<Text>();
+            hudData.m_staminaText = hudData.m_gui.transform.Find("Stamina/StaminaText").GetComponent<TextMeshProUGUI>();
         }
 
-        hudData.m_healthText = hudData.m_gui.transform.Find("Health/HealthText").GetComponent<Text>();
+        hudData.m_healthText = hudData.m_gui.transform.Find("Health/HealthText").GetComponent<TextMeshProUGUI>();
         hudData.m_level2 = hudData.m_gui.transform.Find("level_2") as RectTransform;
         hudData.m_level3 = hudData.m_gui.transform.Find("level_3") as RectTransform;
         hudData.m_alerted = hudData.m_gui.transform.Find("Alerted") as RectTransform;
         hudData.m_aware = hudData.m_gui.transform.Find("Aware") as RectTransform;
-        hudData.m_name = hudData.m_gui.transform.Find("Name").GetComponent<Text>();
+        hudData.m_name = hudData.m_gui.transform.Find("Name").GetComponent<TextMeshProUGUI>();
         hudData.m_name.text = Localization.instance.Localize(c.GetHoverName());
         hudData.m_isMount = isMount;
         __instance.m_huds.Add(c, hudData);
@@ -127,30 +128,66 @@ static class HudAwakePatch
         Transform originalHealthText = EnemyHud.instance.m_baseHudMount.transform.Find("Health/HealthText");
         foreach (Transform t in EnemyHud.instance.m_hudRoot.transform)
         {
-            if(t.name.Contains("Player") && HealthDisplayPlugin.GroupsIsInstalled) continue;
-            Transform healthTransform = t.Find("Health");
-            if (!healthTransform) continue;
-            if (healthTransform.Find("HealthText")) return;
-            GameObject healthObj =
-                Object.Instantiate(originalHealthText.gameObject, originalHealthText);
-            healthObj.name = "HealthText";
-            healthObj.transform.SetParent(healthTransform);
-            healthObj.GetComponent<RectTransform>().anchoredPosition = Vector2.up;
-            healthObj.SetActive(true);
-            Transform darken = healthTransform.Find("darken");
-            Transform background = healthTransform.Find("bkg");
-            Transform slow = healthTransform.Find("health_slow/bar");
-            Transform fast = healthTransform.Find("health_fast/bar");
-            if (!slow) continue;
-            if (slow.GetComponent<RectTransform>().sizeDelta.y < 12)
+            try
             {
-                slow.GetComponent<RectTransform>().sizeDelta = new Vector2(100f, 12f);
-                if (fast) fast.GetComponent<RectTransform>().sizeDelta = new Vector2(100f, 12f);
-                if (darken) darken.GetComponent<RectTransform>().sizeDelta = new Vector2(15f, 15f);
-                if (background) background.GetComponent<RectTransform>().sizeDelta = new Vector2(0f, 8f);
-            }
+                HealthDisplayPlugin.HealthDisplayLogger.LogDebug("Checking transform " + t.name);
+                if (t.name.Contains("Player") && HealthDisplayPlugin.GroupsIsInstalled)
+                {
+                    HealthDisplayPlugin.HealthDisplayLogger.LogDebug(
+                        "Continuing loop since it's a player and GroupsIsInstalled is true");
+                    continue;
+                }
 
-            healthObj.GetComponent<Text>().fontSize = (int)slow.GetComponent<RectTransform>().sizeDelta.y;
+                Transform healthTransform = t.Find("Health");
+                if (!healthTransform)
+                {
+                    HealthDisplayPlugin.HealthDisplayLogger.LogDebug("Health transform not found, continuing loop");
+                    continue;
+                }
+
+                if (healthTransform.Find("HealthText"))
+                {
+                    HealthDisplayPlugin.HealthDisplayLogger.LogDebug(
+                        "HealthText transform already exists, returning");
+                    return;
+                }
+
+                HealthDisplayPlugin.HealthDisplayLogger.LogDebug("Instantiating healthObj...");
+                GameObject healthObj = Object.Instantiate(originalHealthText.gameObject, originalHealthText);
+                healthObj.name = "HealthText";
+                healthObj.transform.SetParent(healthTransform);
+                healthObj.GetComponent<RectTransform>().anchoredPosition = Vector2.up;
+                healthObj.SetActive(true);
+                Transform darken = healthTransform.Find("darken");
+                Transform background = healthTransform.Find("bkg");
+                Transform slow = healthTransform.Find("health_slow/bar");
+                Transform fast = healthTransform.Find("health_fast/bar");
+                if (!slow)
+                {
+                    HealthDisplayPlugin.HealthDisplayLogger.LogDebug("Slow transform not found, continuing loop");
+                    continue;
+                }
+
+                if (slow.GetComponent<RectTransform>().sizeDelta.y < 12)
+                {
+                    HealthDisplayPlugin.HealthDisplayLogger.LogDebug("Setting sizeDelta of slow and fast transforms");
+                    slow.GetComponent<RectTransform>().sizeDelta = new Vector2(100f, 12f);
+                    if (fast) fast.GetComponent<RectTransform>().sizeDelta = new Vector2(100f, 12f);
+                    if (darken) darken.GetComponent<RectTransform>().sizeDelta = new Vector2(15f, 15f);
+                    if (background) background.GetComponent<RectTransform>().sizeDelta = new Vector2(0f, 8f);
+                }
+
+                HealthDisplayPlugin.HealthDisplayLogger.LogDebug("Setting fontSize of healthObj text component");
+                TextMeshProUGUI? tmGUI = healthObj.GetComponent<TextMeshProUGUI>();
+                tmGUI.fontSize = (int)slow.GetComponent<RectTransform>().sizeDelta.y;
+                tmGUI.alignment = TextAlignmentOptions.CaplineGeoAligned;
+                tmGUI.enableWordWrapping = false;
+                tmGUI.outlineWidth = 0.3f;
+                tmGUI.outlineColor = Color.black;
+            } catch (Exception e)
+            {
+                HealthDisplayPlugin.HealthDisplayLogger.LogDebug($"Error in foreach loop: on {t.name} skipping, but you should know about it." + e);
+            }
         }
     }
 }
