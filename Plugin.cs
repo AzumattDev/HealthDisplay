@@ -17,7 +17,7 @@ namespace HealthDisplay
     public class HealthDisplayPlugin : BaseUnityPlugin
     {
         internal const string ModName = "HealthDisplay";
-        internal const string ModVersion = "1.0.4";
+        internal const string ModVersion = "2.0.0";
         internal const string Author = "Azumatt";
         private const string ModGUID = Author + "." + ModName;
         private static string ConfigFileName = ModGUID + ".cfg";
@@ -49,8 +49,10 @@ namespace HealthDisplay
                 "Creature health format\n'{0}' is current health value\n'{1}' is total health value\n'{2}' is health percentage value");
             TamedColor = config("2 - Colors", "Tamed HB Color", new Color(0.2f, 0.62f, 0.4f, 1.0f), //"#339E66FF"
                 "Color of the health bar for tamed creatures. This is the bar that is on top.");
-            EnemyHbColor = config("2 - Colors", "Enemy HB Color", new Color(0.2f, 0.62f, 0.4f, 1.0f), //"#339E66FF"
-                "Color of the health bar for tamed creatures. This is the bar that is under the top bar.");
+            PlayerHbColor = config("2 - Colors", "Player HB Color", new Color(0.2f, 0.62f, 0.4f, 1.0f), //"#339E66FF"
+                "Color of the health bar for players. This is the bar that is on top.");
+            EnemyHbColor = config("2 - Colors", "Enemy HB Color", new Color(0.8f, 0.2f, 0.2f, 1.0f), //"#339E66FF"
+                "Color of the health bar for enemy creatures. This is the bar that is on top.");
             HighPercentColor = config("2 - Colors", "High Percent Color",
                 new Color(0.2f, 0.62f, 0.4f, 1.0f), //"#339E66FF"
                 "Color of the health bar's percentage text for creatures with high health percentage. 75% or higher.");
@@ -150,6 +152,7 @@ namespace HealthDisplay
         private static ConfigEntry<Toggle> _serverConfigLocked = null!;
         internal static ConfigEntry<string> HealthString = null!;
         internal static ConfigEntry<Color> TamedColor = null!;
+        internal static ConfigEntry<Color> PlayerHbColor = null!;
         internal static ConfigEntry<Color> EnemyHbColor = null!;
         internal static ConfigEntry<Color> HighPercentColor = null!;
         internal static ConfigEntry<Color> HurtPercentColor = null!;

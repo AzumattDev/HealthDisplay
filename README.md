@@ -91,16 +91,3 @@ For Questions or Comments, find us in the Odin Plus Team Discord or mine:
 [![https://i.imgur.com/XXP6HCU.png](https://i.imgur.com/XXP6HCU.png)](https://discord.gg/Pb6bVMnFb2)
 <a href="https://discord.gg/pdHgy6Bsng"><img src="https://i.imgur.com/Xlcbmm9.png" href="https://discord.gg/pdHgy6Bsng" width="175" height="175"></a>
 ***
-
-
-## Changelog
-- 1.0.4
-  - Fixed for Valheim 0.214.2
-- 1.0.3
-  - Fixed issue with boss health bars
-  - Fixed compatibility with Groups mod
-  - Update README.md file with configuration options listing.
-- 1.0.1/1.0.2
-  - Mistlands Update
-- 1.0.0
-  - Initial Release
