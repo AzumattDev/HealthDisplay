@@ -9,6 +9,14 @@ Shows the HP values and percentage of creatures and bosses.
 
 * Optionally install this on server for version check and ServerSync
 
+## Compatible Mods
+
+* This mod is compatible
+  with [Creature Level and Loot Control](https://valheim.thunderstore.io/package/Smoothbrain/CreatureLevelAndLootControl/)
+* This mod is compatible
+  with [WackyEpicMMOSystem](https://valheim.thunderstore.io/package/WackyMole/WackyEpicMMOSystem/)
+* This mod is compatible with [Groups](https://valheim.thunderstore.io/package/Smoothbrain/Groups/)
+
 ## Customized HealthBar
 
 * All configuration is made within the **Azumatt.HealthDisplay.cfg** and is live. Highly recommend using
@@ -16,7 +24,6 @@ Shows the HP values and percentage of creatures and bosses.
 * Change scale of enemy/tamed bar
 * Change color of enemy bar/tamed bar
 * Change color of percentage [Max, Mid, Low, Critical]
-
 
 ![https://media.discordapp.net/attachments/1046680688822321193/1046680869076733983/image.png](https://media.discordapp.net/attachments/1046680688822321193/1046680869076733983/image.png)
 ![https://media.discordapp.net/attachments/1046680688822321193/1046682639597326336/image.png](https://media.discordapp.net/attachments/1046680688822321193/1046682639597326336/image.png)
@@ -26,59 +33,72 @@ Shows the HP values and percentage of creatures and bosses.
 <details><summary><b>Configuration Options (Click to expand)</b></summary>
 
 ### How they look in [Official BepInEx ConfigurationManager](https://valheim.thunderstore.io/package/Azumatt/Official_BepInEx_ConfigurationManager/)
-![https://i.imgur.com/RKHUfxk.png](https://i.imgur.com/RKHUfxk.png)
 
-
+![https://i.imgur.com/Nv8rTyX.png](https://i.imgur.com/Nv8rTyX.png)
 
 `1 - General`
 
 Lock Configuration [Synced with Server]
+
 * If on, the configuration is locked and can be changed by server admins only.
-  * Default Value: On
+    * Default Value: On
 
 Health String Format [Synced with Server]
+
 * Creature health format
-  * '{0}' is current health value
-  * '{1}' is total health value
-  * '{2}' is health percentage value
-    * Default Value: {0}/{1} (<color>{2}%</color>)
+    * '{0}' is current health value
+    * '{1}' is total health value
+    * '{2}' is health percentage value
+        * Default Value: {0}/{1} (<color>{2}%</color>)
 
 `2 - Colors`
 
 Tamed HB Color [Synced with Server]
+
 * Color of the health bar for tamed creatures. This is the bar that is on top.
-  * Default Value: 339E66FF
+    * Default Value: 339E66FF
+
+Player HB Color [Synced with Server]
+
+* Color of the health bar for players and creatures in the player faction. This is the bar that is the top bar.
+    * Default Value: 339E66FF
 
 Enemy HB Color [Synced with Server]
-* Color of the health bar for tamed creatures. This is the bar that is under the top bar.
-  * Default Value: 339E66FF
+
+* Color of the health bar for enemy creatures. This is the bar that is the top bar.
+    * Default Value: CC3333FF
 
 High Percent Color [Synced with Server]
+
 * Color of the health bar's percentage text for creatures with high health percentage. 75% or higher.
-  * Default Value: 339E66FF
+    * Default Value: 339E66FF
 
 Hurt Percent Color [Synced with Server]
+
 * Color of the health bar's percentage text for creatures with relatively high health percentage. 50% or higher.
-  * Default Value: CCCC33FF
+    * Default Value: CCCC33FF
 
 Low Percent Color [Synced with Server]
+
 * Color of the health bar's percentage text for creatures with low health percentage. 25% or higher.
-  * Default Value: CC6633FF
+    * Default Value: CC6633FF
 
 Critical Percent Color [Synced with Server]
+
 * Color of the health bar's percentage text for creatures with critical health percentage. 0% or higher.
-  * Default Value: CC3333FF
+    * Default Value: CC3333FF
 
 `3 - Scaling`
 
 Tamed Healthbar Scale [Synced with Server]
+
 * Scale of the health bar for tamed creatures.
-  * Default Value: {"x":1.0,"y":1.0,"z":1.0}
+    * Default Value: {"x":1.0,"y":1.0,"z":1.0}
 
 Enemy Healthbar Scale [Synced with Server]
-* Scale of the health bar for creatures.
-  * Default Value: {"x":1.0,"y":1.0,"z":1.0}
 
+* Scale of the health bar for creatures.
+    * Default Value: {"x":1.0,"y":1.0,"z":1.0}
 
 </details>
 

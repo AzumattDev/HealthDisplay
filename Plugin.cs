@@ -50,8 +50,8 @@ namespace HealthDisplay
             TamedColor = config("2 - Colors", "Tamed HB Color", new Color(0.2f, 0.62f, 0.4f, 1.0f), //"#339E66FF"
                 "Color of the health bar for tamed creatures. This is the bar that is on top.");
             PlayerHbColor = config("2 - Colors", "Player HB Color", new Color(0.2f, 0.62f, 0.4f, 1.0f), //"#339E66FF"
-                "Color of the health bar for players. This is the bar that is on top.");
-            EnemyHbColor = config("2 - Colors", "Enemy HB Color", new Color(0.8f, 0.2f, 0.2f, 1.0f), //"#339E66FF"
+                "Color of the health bar for players and creatures in the player faction. This is the bar that is on top.");
+            EnemyHbColor = config("2 - Colors", "Enemy HB Color", new Color(0.8f, 0.2f, 0.2f, 1.0f), //"#CC3333FF"
                 "Color of the health bar for enemy creatures. This is the bar that is on top.");
             HighPercentColor = config("2 - Colors", "High Percent Color",
                 new Color(0.2f, 0.62f, 0.4f, 1.0f), //"#339E66FF"
