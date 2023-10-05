@@ -1,3 +1,5 @@
+- 2.0.1
+    - Update for Valheim 0.217.22 
 - 2.0.0
     - Updated and reworked the internal code to be easier to maintain and more compatible with other mods. 
 - 1.0.4

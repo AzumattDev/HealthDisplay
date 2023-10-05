@@ -1,9 +1,9 @@
 {
   "name": "HealthDisplay",
-  "version_number": "2.0.0",
+  "version_number": "2.0.1",
   "website_url": "https://discord.gg/Pb6bVMnFb2",
   "description": "Standalone mod to display creature health. Change the colors and the text format in the config file or through the Configuration Manager.",
   "dependencies": [
-    "denikson-BepInExPack_Valheim-5.4.2105"
+    "denikson-BepInExPack_Valheim-5.4.2200"
   ]
 }
