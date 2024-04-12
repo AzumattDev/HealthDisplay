@@ -1,3 +1,7 @@
+- 2.0.3
+  - Update for Valheim 0.217.46 
+- 2.0.2
+  - Update for Valheim 0.217.28 and update ServerSync internally
 - 2.0.1
     - Update for Valheim 0.217.22 
 - 2.0.0
